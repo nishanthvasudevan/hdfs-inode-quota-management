@@ -70,7 +70,7 @@ def getNameQuotaUsageMetrics(currentNameQuotaDictionary, newNameQuotaDictionary,
 def main():
 
 	colo = subprocess.Popen("/usr/bin/facter colo", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0].strip()
-	defaultGraphiteHost = "metrics-relay.grid.{}.inmobi.com".format(colo)
+	defaultGraphiteHost = ""
 	cluster = subprocess.Popen("/usr/bin/facter hadoop_conf", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0].strip()
 	defaultGraphitePrefix = "prod.{}.grid.{}_{}.namequota".format(colo,colo.upper(),cluster.upper())
 

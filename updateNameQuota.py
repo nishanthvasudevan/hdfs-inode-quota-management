@@ -8,18 +8,6 @@ import ast
 from optparse import OptionParser
 from datetime import datetime
 
-'''
-yaml file format
-gold:
-  NAMENODE: gold
-    HDFS_PORT:
-    /user:
-      default: 322122547200
-      exceptions:
-        yoda: 2473901162496000
-        rmcuser: 3298534883328
-        ifc: 3298534883328
-'''
 def getCurrentNameQuota(nameQuotaDictionary, cluster):
 	print "{}, fetching current nameQuota from hdfs://{}".format(datetime.now(), cluster)
 	usage = "{"

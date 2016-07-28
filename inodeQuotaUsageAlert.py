@@ -43,12 +43,12 @@ def getCurrentNameQuota(nameQuotaDictionary, colo):
 	usageDict = ast.literal_eval(usage)
 	return usageDict
 
-def sendmail(message, toaddr, cluster, parentHdfsDirectory, childHdfsDirectory, fromaddr='nagios@inmobi.com'):
+def sendmail(message, toaddr, cluster, parentHdfsDirectory, childHdfsDirectory, fromaddr='sender@domain.com'):
         mailbody = message
-	tmp = toaddr.replace("@inmobi.com","")
+	tmp = toaddr.replace("@domain.com","")
 	tmp = tmp.replace(".", " ")
 	name = tmp.title()
-	msg = """From: GridOps <{}>
+	msg = """From: Sender <{}>
 To: {} <{}>
 MIME-Version: 1.0
 Content-type: text/html
@@ -72,7 +72,7 @@ def checkNameQuotaUsage(currentNameQuotaDictionary, contactsDictionary, cluster,
 				continue
 			currentUsage = float((maxNameQuota - remainingNameQuota)) / maxNameQuota * 100
 
-			msg = "<font face='Verdana'><h2>NameQuota usage of hdfs://{}{}/{}</h2><br>Current usage is at {:.2f}% of {} (Max nameQuota set for this directory).<br><br>You can create {} more files and directories under {}/{}.<br><br>Consider purging some files and directories.<br><br>Your MR jobs may fail when the nameQuota is exhausted.<br><br>Regards,<br><br>GridOps".format(cluster, parentHdfsDirectory, childHdfsDirectory, currentUsage, maxNameQuota, remainingNameQuota, parentHdfsDirectory, childHdfsDirectory)
+			msg = "<font face='Verdana'><h2>NameQuota usage of hdfs://{}{}/{}</h2><br>Current usage is at {:.2f}% of {} (Max nameQuota set for this directory).<br><br>You can create {} more files and directories under {}/{}.<br><br>Consider purging some files and directories.<br><br>Your MR jobs may fail when the nameQuota is exhausted.<br><br>Regards,<br><br>Sender".format(cluster, parentHdfsDirectory, childHdfsDirectory, currentUsage, maxNameQuota, remainingNameQuota, parentHdfsDirectory, childHdfsDirectory)
 
 			if currentUsage >= critical:
 				try:
